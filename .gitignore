@@ -4,5 +4,8 @@ _site
 # emacs
 *~
 
+# vi
+*.swp
+
 # Python
 *.pyc
