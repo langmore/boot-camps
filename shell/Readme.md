@@ -1,13 +1,14 @@
 # The Shell
 
-[Back To The Setup](http://swcarpentry.github.com/boot-camps/2013-01-12-chicago/)
-- [Forward to Python](https://github.com/thehackerwithin/boot-camps/tree/2013-01-chicago/python/intro)
+[Back To The Setup] TODO: modify: (http://swcarpentry.github.com/boot-camps/2013-01-12-chicago/)
+
+- [Forward to Python] TODO: modify: (https://github.com/thehackerwithin/boot-camps/tree/2013-01-chicago/python/intro)
 
 * * * * *
 
-**Updated and presented by : Radhika Khetani**
+**Updated and presented by : Ian Langmore**
 
-**Modified by : Sasha Wood**
+**Modified by : Sasha Wood, Radhika Khetani**
 
 **This presentation originally developed by: Milad Fatenejad**
 
@@ -20,7 +21,7 @@ with a keyboard instead of controlling graphical user interfaces
 
 Use the GUI to open the tutorial on github.  Single click on the "Firefox 
 Web Browser".  Type in the URL:
-    github.com/thehackerwithin/boot-camps/tree/2013-01-chicago
+    TODO: modify: github.com/thehackerwithin/boot-camps/tree/2013-01-chicago
 
 Click on the directory named `shell`.
 
@@ -31,15 +32,23 @@ operating systems.
 There are many reasons to learn about the shell. In my opinion, the
 most important reasons are that: 
 
-1.  It is very common to encounter the shell and
-    command-line-interfaces in scientific computing, so you will
-    probably have to learn it eventually 
 
-2.  The shell is a really powerful way of interacting with your
+1.  The shell is a very powerful way of interacting with your
     computer. GUIs and the shell are complementary - by knowing both
     you will greatly expand the range of tasks you can accomplish with
     your computer. You will also be able to perform many tasks more
     efficiently.
+
+2.  Often, your programs must communicate with the user or other computers.
+    A CLI is a very simple way for you to accomplish this.  Trust me, you
+    don't want to write a GUI for every script you write.
+
+3.  When operating remote computers or a cluster, usually the only way to
+    work is in a shell.
+
+4.  Because of 1-3, it is very common to encounter the shell and
+    command-line-interfaces (CLI) in scientific computing, so you will
+    probably have to learn it anyway.
 
 The shell is just a program and there are many different shell
 programs that have been developed. The most common shell (and the one
@@ -60,12 +69,12 @@ by manipulating some experimental data from a hearing test. To get
 the data for this test, you will need internet access. Just enter the
 command:
 
-    git clone https://github.com/thehackerwithin/boot-camps.git
+    TODO: Change git clone https://github.com/thehackerwithin/boot-camps.git
 
 Followed by:
 
     cd boot-camps
-    git checkout 2013-01-chicago
+    TODO: Change git checkout 2013-01-chicago
 
 These 2 commands will grab all of the data needed for this workshop from the
 internet.
@@ -99,17 +108,17 @@ can contain other files or directories.
 Whenever you start up a terminal, you will start in a special
 directory called the *home* directory. Every user has their own home
 directory where they have full access to do whatever they want. In
-this case, the `pwd` command tells us that we are in the `/home/swc`
-directory. This is the home directory for the `swc` user. That is our
+this case, the `pwd` command tells me that I am in the `/home/langmore/`
+directory. This is the home directory for the `langmore` user. That is my
 user name. You can always find out your user name by entering the
 command `whoami`. 
 
 **File Types**
 
 When you enter the `ls` command lists the contents of the current
-directory. There are several items in the home directory, notice that
-they are all colored blue. This tells us that all of these items are
-directories as opposed to files.
+directory. On most terminals, there are several items in the home directory 
+that are colored blue.  This tells us they are directories rather than
+files.
 
 Lets create an empty file using the `touch` command. Enter the
 command:
@@ -121,18 +130,19 @@ new entry, called `testfile`, exists. It is colored white meaning that
 it is a file, as opposed to a directory. The `touch` command just
 creates an empty file. 
 
-Some terminals will not color the directory entries in this very
-convenient way. In those terminals, use `ls -F` instead of `ls`. The
-`-F` argument modifies the results so that a slash is placed at the
-end of directories. If the file is *executable* meaning that it can be
-run like a program, then a star fill be placed of the file name.
-
 You can also use the command `ls -l` to see whether items in a
 directory are files or directories. `ls -l` gives a lot more
 information too, such as the size of the file and information about
 the owner. If the entry is a directory, then the first letter will be
 a "d". The fifth column shows you the size of the entries in
 bytes. Notice that `testfile` has a size of zero.
+
+Try entering
+
+    ls -a
+    ls -al
+
+What do you think this did?
 
 Now, let's get rid of `testfile`. To remove a file, just enter the
 command:
@@ -153,8 +163,7 @@ directory. Enter the following command:
 
 Now use the `ls` command to see what is inside this directory. You
 will see that there is an entry which is green. This means that this
-is an executable. If you use `ls -F` you will see that this file ends
-with a star.
+is an executable. 
 
 This directory contains all of the material for this boot camp. Now
 move to the directory containing the data for the shell tutorial:
@@ -168,7 +177,7 @@ directory.
 ## Arguments
 
 Most programs take additional arguments that control their exact
-behavior. For example, `-F` and `-l` are arguments to `ls`.  The `ls`
+behavior. For example, `-a` and `-l` are arguments to `ls`.  The `ls`
 program, like many programs, take a lot of arguments. But how do we
 know what the options are to particular commands?
 
@@ -177,9 +186,10 @@ manual using the `man` program. Try entering:
 
     man ls
 
-This will open the manual page for `ls`. Use the space key to go
-forward and b to go backwards. When you are done reading, just hit `q`
-to exit.
+This will open the manual page for `ls`. Use the up/down arrow keys to go
+forward/backwards. When you are done reading, just hit `q`
+to exit.  The manual is written as a reference for experienced users.
+Beginners are also encouraged to search for examples on the internet.
 
 Programs that are run from the shell can get extremely complicated. To
 see an example, open up the manual page for the `find` program,
@@ -218,20 +228,20 @@ name. Directories can be specified using either a *relative* path a
 full *path*. The directories on the computer are arranged into a
 hierarchy. The full path tells you where a directory is in that
 hierarchy. Navigate to the home directory. Now, enter the `pwd`
-command and you should see:
+command and I see:
 
-    /home/swc
+    /home/langmore
 
-which is the full name of your home directory. This tells you that you
-are in a directory called `swc`, which sits inside a directory called
+which is the full name of my home directory. This tells me that I
+am in a directory called `langmore`, which sits inside a directory called
 `home` which sits inside the very top directory in the hierarchy. The
 very top of the hierarchy is a directory called `/` which is usually
-referred to as the *root directory*. So, to summarize: `swc` is a
+referred to as the *root directory*. So, to summarize: `langmore` is a
 directory in `home` which is a directory in `/`.
 
 Now enter the following command:
 
-    cd /home/swc/boot-camps/shell
+    cd /home/your-username/boot-camps/shell
 
 This jumps to `shell`. Now go back to the home directory. We saw
 earlier that the command:
@@ -240,7 +250,7 @@ earlier that the command:
 
 had the same effect - it took us to the `shell` directory. But,
 instead of specifying the full path
-(`/home/swc/boot-camps/shell`), we specified a *relative path*. In
+(`/home/your-username/boot-camps/shell`), we specified a *relative path*. In
 other words, we specified the path relative to our current
 directory. A full path always starts with a `/`. A relative path does
 not. You can usually use either a full path or a relative path
@@ -269,12 +279,12 @@ above your current directory. Thus:
 
     ls ..
 
-prints the contents of the `/home/swc/boot-camps`. You can chain
+prints the contents of the `/home/your-username/boot-camps`. You can chain
 these together, so:
 
     ls ../../
 
-prints the contents of `/home/swsc` which is your home
+prints the contents of `/home/your-username` which is your home
 directory. Finally, the special directory `.` always refers to your
 current directory. So, `ls`, `ls .`, and `ls ././././.` all do the
 same thing, they print the contents of the current directory. This may
@@ -373,21 +383,23 @@ navigating to a different directory.
 
 **Tab Completion**
 
-Navigate to the home directory. Typing out directory names can waste a
+Navigate to the `boot-camps/` directory. Typing out directory names can waste a
 lot of time. When you start typing out the name of a directory, then
 hit the tab key, the shell will try to fill in the rest of the
 directory name. For example, enter:
 
-    cd S<tab>
+    cd s<tab>
 
 The shell will fill in the rest of the directory name for
-`boot-camps`. Now enter:
+`shell`.  Using tab-completion, navigate to `data/alexander`.
+Now enter:
 
-    ls 3<tab><tab>
+    ls d<tab><tab>
 
-When you hit the first tab, nothing happens. The reason is that there
-are multiple directories in the home directory which start with
-3. Thus, the shell does not know which one to fill in. When you hit
+When you hit the first tab, `d` becomes `data_` but does not complete
+to a full filename.  The reason is that there
+are multiple directories in this directory which start with
+`data_`.  Thus, the shell does not know which one to fill in. When you hit
 tab again, the shell will list the possible choices. 
 
 Tab completion can also fill in the names of programs. For example,
@@ -416,7 +428,9 @@ example:
     which ls
 
 Will return "/bin/ls". Thus, we can see that `ls` is a program that
-sits inside of the `/bin` directory. Now enter:
+sits inside of the `/bin` directory.
+
+Now enter:
 
     which find
 
@@ -447,7 +461,7 @@ this directory. Now, try to run the program by entering:
     hello
 
 You should get an error saying that hello cannot be found. That is
-because the directory `/home/swc/boot-camps/shell` is not in the
+because the directory `/home/your-username/boot-camps/shell` is not in the
 `PATH`. You can run the `hello` program by entering:
 
     ./hello
@@ -457,7 +471,7 @@ directory. This tells the shell to run the `hello` program which is
 located right here. So, you can run any program by entering the path
 to that program. You can run `hello` equally well by specifying:
 
-    /home/swc/boot-camps/shell/hello
+    /home/your-username/boot-camps/shell/hello
 
 Or by entering:
 
@@ -504,36 +518,29 @@ case. Enter the following command:
     less ~/boot-camps/shell/dictionary.txt
 
 `less` opens the file, and lets you navigate through it. The commands
-are identical to the `man` program. Use "space" to go forward and hit
-the "b" key to go backwards. The "g" key goes to the beginning of the
-file and "G" goes to the end. Finally, hit "q" to quit.
+are identical to the `man` program.  Here's some commands you can use:
 
-`less` also gives you a way of searching through files. Just hit the
-"/" key to begin a search. Enter the name of the word you would like
-to search for and hit enter. It will jump to the next location where
-that word is found. Try searching the `dictionary.txt` file for the
-word "cat". If you hit "/" then "enter", `less` will just repeat
-the previous search. `less` searches from the current location and
-works its way forward. If you are at the end of the file and search
-for the word "cat", `less` will not find it. You need to go to the
-beginning of the file and search.
-
-Remember, the `man` program uses the same commands, so you can search
-documentation using "/" as well!
+* The arrow keys and space bar navigate up and down
+* `<Ctrl>-F` `<Ctrl>-B` move forward and backward by one page
+* `g` and `G` go the beginning and end of the file
+* `q` quits
+* `less` also gives you a way of searching through files. Just hit the
+"/" key to begin a search then hit enter.  Hit `n` to go to the next instance
+  of a word.  Note:  Less does not wrap around while searching.
 
 * * * *
 **Short Exercise**
 
-Use the commands we've learned so far to figure out how to search
-in reverse while using `less`.
+Use `less` to search for all the words in `shell/dictionary.txt` that contain
+the string `hi`.
 
-* * * * 
+* * * *
 
 
 ## Redirection
 
 Let's turn to the experimental data from the hearing tests that we
-began with. This data is located in the `~/boot-camps/shell/data`
+began with. This data is located in the `boot-camps/shell/data`
 directory. Each subdirectory corresponds to a particular participant
 in the study. Navigate to the `Bert` subdirectory in `data`.  There
 are a bunch of text files which contain experimental data
@@ -560,7 +567,7 @@ exists.
 Use `>>`, to append the contents of all of the files which contain the
 number 4 in the directory:
 
-    /home/swc/boot-camps/shell/data/gerdal
+    boot-camps/shell/data/gerdal
 
 to the existing `all_data` file. Thus, when you are done `all_data`
 should contain all of the experiment data from Bert and any
@@ -663,11 +670,13 @@ see the individual counts, just the total. Of course, I could just do:
     wc all_data
 
 Since this file is a concatenation of the smaller files. Sure, this
-works, but I had to create the `all_data` file to do this. Thus, I
-have wasted a precious 7062 bytes of hard disk space. We can do this
-*without* creating a temporary file, but first I have to show you two
-more commands: `head` and `tail`. These commands print the first few,
-or last few, lines of a file, respectively. Try them out on
+works, but I had to create the `all_data` file to do this.  Doing this
+often leads to lots of little files that clutter up your directory.
+We can however do this *without* creating a temporary file, but first
+I have to show you two more commands: `head` and `tail`. These commands
+print the first few, or last few, lines of a file, respectively. Try
+them out on
+
 `all_data`:
 
     head all_data
@@ -687,7 +696,7 @@ gerdal/*4*` and send it into the `tail -n 1` command. The `|`
 character (called pipe) is used for this purpose. Enter the following
 command:
 
-    wc Bert/* gerdal/Data0559 | tail -n 1
+    wc Bert/* gerdal/*4* | tail -n 1
 
 This will print only the total number of lines, characters, and words
 across all of these files. What is happening here? Well, `tail`, like
@@ -706,16 +715,15 @@ data to come in. Now type:
     are
     good
 
-then CONTROL+d. You should is the lines:
+then CONTROL+d. You should see the lines:
 
     are
     good
 
 printed back at you. The CONTROL+d keyboard shortcut inserts an
 *end-of-file* character. It is sort of the standard way of telling the
-program "I'm done entering data". The `|` character is replaces the
-data from the keyboard with data from another command. You can string
-all sorts of commands together using the pipe. 
+program "I'm done entering data". The `|` character replaces the
+data from the keyboard with data from another command.
 
 The philosophy behind these command line programs is that none of them
 really do anything all that impressive. BUT when you start chaining
@@ -848,7 +856,7 @@ conducted:
 Create an executable script called `smallestrange` in the `data`
 directory, that is similar to the `smallest` script, but prints the
 file containing the file with the smallest Range. Use the commands
-`grep`, `sort`, and `tail` to do this.
+`grep`, `sort`, and `head` to do this.
 
 * * * * 
 
