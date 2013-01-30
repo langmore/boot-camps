@@ -860,100 +860,53 @@ file containing the file with the smallest Range. Use the commands
 
 * * * * 
 
+# The uniquely sorting cutty grepping cat baby
 
-# Finding files
+Navigate to the `shell/babynames` directory and unzip `names.zip` using the utility `unzip`.  This will extract the babynames files.  FYI, this file can be found online
+[here](http://www.ssa.gov/oact/babynames/names.zip).
 
-The `find` program can be used to find files based on arbitrary
-criteria. Navigate to the `data` directory and enter the following
-command:
+* * * *
 
-    find . -print
+**Short Exercises**
 
-This prints the name of every file or directory, recursively, starting
-from the current directory. Let's exclude all of the directories:
+1. Figure out which years this dataset covers.
+2. Figure out how the number of baby names in each year changes
+3. Figure out how many females named Sarah were born during different years
+4. Figure out the most popular Female name in 1982
 
-    find . -type f -print
+* * * *
 
-This tells `find` to locate only files. Now try these commands:
+One pipeline that accomplishes number 4 is:
 
-    find . -type f -name "*1*"
-    find . -type f -name "*1*" -or -name "*2*" -print
-    find . -type f -name "*1*" -and -name "*2*" -print
+    $ grep ,F, yob1982.txt | sort -t, -k3 -n | tail -n1
 
-The `find` command can acquire a list of files and perform some
-operation on each file. Try this command out:
+it produces the output
 
-    find . -type f -exec grep Volume {} \;
+    Jennifer,F,57099
 
-This command finds every file starting from `.`. Then it searches each
-file for a line which contains the word "Volume". The `{}` refers to
-the name of each file. The trailing `\;` is used to terminate the
-command.  This command is slow, because it is calling a new instance
-of `grep` for each item the `find` returns.
+Suppose we only want Jennifer, and not F,57099.  We can use the `cut` utility.  You will want to use the `delimiter` and `field` options.  The command is: `cut -d, -f1`.  Put this together with the above pipeline.
 
-A faster way to do this is to use the `xargs` command:
+Suppose we want to print out the most popular name in every year.  Let's make a shell script for it.  Note that if you're generating useful data, using a shell script has the advantage that you can add the shell script to your repository, thus keeping a record of how your data was generated.
 
-    find . -type f -print | xargs grep Volume
+Create a file called `getpopular.sh` that contains the following:
 
-`find` generates a list of all the files we are interested in, 
-then we pipe them to `xargs`.  `xargs` takes the items given to it 
-and passes them as arguments to `grep`.  `xargs` generally only creates
-a single instance of `grep` (or whatever program it is running).
+    #!/bin/bash
 
-* * * * 
-**Short Exercise**
+    for file in $(ls *txt); do
+        echo $file
+    done
 
-Navigate to the `data` directory. Use one find command to perform each
-of the operations listed below (except number 2, which does not
-require a find command):
-
-1.  Find any file whose name is "NOTES" within `data` and delete it 
-
-2.  Create a new directory called `cleaneddata`
-
-3.  Move all of the files within `data` to the `cleaneddata` directory
-
-4.  Rename all of the files to ensure that they end in `.txt` (note:
-    it is ok for the file name to end in `.txt.txt`
-
-Hint: If you make a mistake and need to start over just do the
-following:
-
-1.  Navigate to the `shell` directory
-
-2.  Delete the `data` directory
-
-3.  Enter the command: `git checkout -- data` You should see that the
-    data directory has reappeared in its original state
-
-**BONUS**
-
-Redo exercise 4, except rename only the files which do not already end
-in `.txt`. You will have to use the `man` command to figure out how to
-search for files which do not match a certain name. 
-
-* * * * 
+Run this shell script.  It should print out all the names of the text files in the current directory.  Now, add a pipeline (rather than just `echo $file` to print out the most popular names year by year.
 
 
+## Additional things to try
 
-## Bonus:
+Start your inner commands using:
 
-**backtick, xargs**: Example find all files with certain text
+    cat $file \
+    | next-command... \
+    | and so on
 
-**alias** -> rm -i
+The \ allows you to continue the command on the next line.  This lets you clearly see that the first line is the file, then each other command is on a new line.  
 
-**variables** -> use a path example
-
-**.bashrc**
-
-**du**
-
-**ln**
-
-**ssh and scp**
-
-**Regular Expressions**
-
-**Permissions**
-
-**Chaining commands together**
+Now replace `cat` with `head -n20`.  This will, instead of reading in the whole file, give you just the top.  This will make the program run much faster.  This is useful when debugging longer programs.
