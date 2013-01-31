@@ -1,9 +1,5 @@
 # The Shell
 
-[Back To The Setup] TODO: modify: (http://swcarpentry.github.com/boot-camps/2013-01-12-chicago/)
-
-- [Forward to Python] TODO: modify: (https://github.com/thehackerwithin/boot-camps/tree/2013-01-chicago/python/intro)
-
 * * * * *
 
 **Updated and presented by : Ian Langmore**
@@ -21,7 +17,8 @@ with a keyboard instead of controlling graphical user interfaces
 
 Use the GUI to open the tutorial on github.  Single click on the "Firefox 
 Web Browser".  Type in the URL:
-    TODO: modify: github.com/thehackerwithin/boot-camps/tree/2013-01-chicago
+
+    https://github.com/langmore/boot-camps/tree/2013-01-columbia-shell
 
 Click on the directory named `shell`.
 
@@ -69,12 +66,12 @@ by manipulating some experimental data from a hearing test. To get
 the data for this test, you will need internet access. Just enter the
 command:
 
-    TODO: Change git clone https://github.com/thehackerwithin/boot-camps.git
+    git clone https://github.com/langmore/boot-camps.git
 
 Followed by:
 
     cd boot-camps
-    TODO: Change git checkout 2013-01-chicago
+    checkout 2013-01-columbia-shell
 
 These 2 commands will grab all of the data needed for this workshop from the
 internet.
@@ -863,7 +860,7 @@ file containing the file with the smallest Range. Use the commands
 # The uniquely sorting cutty grepping cat baby
 
 Navigate to the `shell/babynames` directory and unzip `names.zip` using the utility `unzip`.  This will extract the babynames files.  FYI, this file can be found online
-[here](http://www.ssa.gov/oact/babynames/names.zip).
+[here][names.zip]
 
 * * * *
 
@@ -872,7 +869,7 @@ Navigate to the `shell/babynames` directory and unzip `names.zip` using the util
 1. Figure out which years this dataset covers.
 2. Figure out how the number of baby names in each year changes
 3. Figure out how many females named Sarah were born during different years
-4. Figure out the most popular Female name in 1982
+4. Figure out the most popular female name in 1982
 
 * * * *
 
@@ -903,10 +900,12 @@ Run this shell script.  It should print out all the names of the text files in t
 
 Start your inner commands using:
 
-    cat $file \
-    | next-command... \
-    | and so on
+    cat $file |
+      next-command... |
+      and so on
 
-The \ allows you to continue the command on the next line.  This lets you clearly see that the first line is the file, then each other command is on a new line.  
+The `|` is the usual pipe but also allows you to continue the command on the next line.  This lets you clearly see that the first line is the file, then each other command is on a new line.  
 
-Now replace `cat` with `head -n20`.  This will, instead of reading in the whole file, give you just the top.  This will make the program run much faster.  This is useful when debugging longer programs.
+Now replace `cat` with `head -n20`.  This will, instead of reading in the whole file, give you just the top, and is useful for debugging.
+
+[names.zip]: http://www.ssa.gov/oact/babynames/names.zip
